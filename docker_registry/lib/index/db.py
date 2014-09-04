@@ -64,7 +64,7 @@ class SQLAlchemyIndex (Index):
         try:
             version = session.query(
                 sqlalchemy.sql.functions.max(Version.id)).first()[0]
-        except sqlalchemy.exc.OperationalError:
+        except sqlalchemy.exc.OperationalError, sqlalchemy.exc.ProgrammingError:
             version = None
         if version:
             if version != self.version:

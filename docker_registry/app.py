@@ -16,7 +16,7 @@ from . import toolkit
 from .lib import config
 from .server import __version__
 import flask
-from flask.ext.cors import CORS
+import flask.ext.cors
 
 # configure logging prior to subsequent imports which assume
 # logging has been configured
@@ -113,7 +113,7 @@ def init():
     # Configure flask_cors
     for i in cfg.cors.keys():
         app.config['CORS_%s' % i.upper()] = cfg.cors[i]
-    CORS(app)
+    flask.ext.cors.CORS(app)
 
 
 def _adapt_smtp_secure(value):
